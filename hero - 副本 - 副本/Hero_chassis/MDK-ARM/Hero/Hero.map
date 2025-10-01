@@ -7188,54 +7188,54 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      1618         40          0          0          0       7888   alg_chassis_calc.o
-      1136          8          0          0          0       2958   alg_pid.o
-      2724          0       1204          2        140       8003   bsp_can.o
-       542          0          0          0         61       6029   bsp_uart.o
-       544          0          0          0         84       6413   can.o
-        82          0         22       1017         20       6201   chassis_fun.o
-       298          0          0          0          0        768   chassis_task.o
-       262          0          0          0          0      16321   cmsis_os.o
-        98          0          0          0          8       2489   crc.o
-      1254         16          0          0         49       7226   dev_motor_dji.o
-       206          0          0          0          0       3315   dma.o
-       192          0         81          0        604       2951   freertos.o
-       684          0          0          0          0       4208   gpio.o
-      1084          0          0          0      15392       4396   heap_4.o
-       302          0          0          0         84       5092   i2c.o
-       296          0          0          0          0       2199   list.o
-       316          0          0          0          0       5690   main.o
-       996         16          0          4          5       3806   port.o
-       848          0         26          0       1208      13349   segger_rtt.o
-      1972         14         23          0          0       3954   segger_rtt_printf.o
-       532          0          0          0        280       5103   spi.o
+      1618         40          0          0          0       7927   alg_chassis_calc.o
+      1136          8          0          0          0       3006   alg_pid.o
+      2724          0       1204          2        140       8051   bsp_can.o
+       542          0          0          0         61       6077   bsp_uart.o
+       544          0          0          0         84       6461   can.o
+        82          0         22       1017         20       6240   chassis_fun.o
+       298          0          0          0          0        778   chassis_task.o
+       262          0          0          0          0      16369   cmsis_os.o
+        98          0          0          0          8       2537   crc.o
+      1254         16          0          0         49       7274   dev_motor_dji.o
+       206          0          0          0          0       3363   dma.o
+       192          0         81          0        604       2999   freertos.o
+       684          0          0          0          0       4256   gpio.o
+      1084          0          0          0      15392       4444   heap_4.o
+       302          0          0          0         84       5140   i2c.o
+       296          0          0          0          0       2247   list.o
+       316          0          0          0          0       5738   main.o
+       996         16          0          4          5       3854   port.o
+       848          0         26          0       1208      13397   segger_rtt.o
+      1972         14         23          0          0       4002   segger_rtt_printf.o
+       532          0          0          0        280       5151   spi.o
         64         26        392          0       1536        832   startup_stm32f407xx.o
-       158          0          0          5          4       7091   stm32f4xx_hal.o
-      3276          0          0          0          0      11531   stm32f4xx_hal_can.o
-       384          0          0          0          0       9702   stm32f4xx_hal_cortex.o
-        64          0          0          0          0       2719   stm32f4xx_hal_crc.o
-      1794          8          8          0          0       8480   stm32f4xx_hal_dma.o
-      1062          0          0          0          0       5076   stm32f4xx_hal_gpio.o
-       676          0          0          0          0      37665   stm32f4xx_hal_i2c.o
-        88          0          0          0          0       3336   stm32f4xx_hal_msp.o
-      3782          0          0          0          0      14391   stm32f4xx_hal_pcd.o
-        12          0          0          0          0       4206   stm32f4xx_hal_pcd_ex.o
-      2730          0          0          0          0       7580   stm32f4xx_hal_rcc.o
-       258          0          0          0          0      19440   stm32f4xx_hal_spi.o
-      3406         14          0          0          0      35985   stm32f4xx_hal_tim.o
-       484          0          0          0          0      15316   stm32f4xx_hal_tim_ex.o
-       240          0          0          0         72       7078   stm32f4xx_hal_timebase_tim.o
-      2522          0          0          0          0      20411   stm32f4xx_hal_uart.o
-       356          0          0          0          0       3032   stm32f4xx_it.o
-      3124          0          0          0          0      19775   stm32f4xx_ll_usb.o
-        18          0         24          4          0       2487   system_stm32f4xx.o
-      2946          0          5          0        300      21816   tasks.o
-      1020          0          0          0        288       9163   tim.o
-      1176          0          0          0        696       7882   usart.o
-       238          0          0          0       1252       6613   usb_otg.o
+       158          0          0          5          4       7139   stm32f4xx_hal.o
+      3276          0          0          0          0      11579   stm32f4xx_hal_can.o
+       384          0          0          0          0       9750   stm32f4xx_hal_cortex.o
+        64          0          0          0          0       2767   stm32f4xx_hal_crc.o
+      1794          8          8          0          0       8528   stm32f4xx_hal_dma.o
+      1062          0          0          0          0       5124   stm32f4xx_hal_gpio.o
+       676          0          0          0          0      37713   stm32f4xx_hal_i2c.o
+        88          0          0          0          0       3384   stm32f4xx_hal_msp.o
+      3782          0          0          0          0      14439   stm32f4xx_hal_pcd.o
+        12          0          0          0          0       4254   stm32f4xx_hal_pcd_ex.o
+      2730          0          0          0          0       7628   stm32f4xx_hal_rcc.o
+       258          0          0          0          0      19488   stm32f4xx_hal_spi.o
+      3406         14          0          0          0      36033   stm32f4xx_hal_tim.o
+       484          0          0          0          0      15364   stm32f4xx_hal_tim_ex.o
+       240          0          0          0         72       7126   stm32f4xx_hal_timebase_tim.o
+      2522          0          0          0          0      20459   stm32f4xx_hal_uart.o
+       356          0          0          0          0       3080   stm32f4xx_it.o
+      3124          0          0          0          0      19823   stm32f4xx_ll_usb.o
+        18          0         24          4          0       2535   system_stm32f4xx.o
+      2946          0          5          0        300      21864   tasks.o
+      1020          0          0          0        288       9211   tim.o
+      1176          0          0          0        696       7930   usart.o
+       238          0          0          0       1252       6661   usb_otg.o
 
     ----------------------------------------------------------------------
-     46108        146       1820       1036      22100     399966   Object Totals
+     46108        146       1820       1036      22100     402022   Object Totals
          0          0         32          0          0          0   (incl. Generated)
        244          4          3          4         17          0   (incl. Padding)
 
@@ -7316,8 +7316,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     52320        622       2116       1036      22196     401358   Grand Totals
-     52320        622       2116        120      22196     401358   ELF Image Totals (compressed)
+     52320        622       2116       1036      22196     403414   Grand Totals
+     52320        622       2116        120      22196     403414   ELF Image Totals (compressed)
      52320        622       2116        120          0          0   ROM Totals
 
 ==============================================================================

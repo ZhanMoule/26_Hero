@@ -38,15 +38,15 @@ DmMotorInitConfig_s gimbal_pitch_motor_config = {
 		.topic_name = "pitch",
     .type = J4310,
 		.angle_pid_config={
-        .kp = 5.0f ,  
-        .ki =  0.0f, 
+        .kp = 38.0f ,  
+        .ki =  0.0001f, 
         .kd =  0.0f,
         .angle_max = 3.1415926f,
         .i_max = 3.0f,
         .out_max = 3.0f,
         },
     .velocity_pid_config={
-        .kp =- 0.3f,
+        .kp =- 0.35f,
         .ki = -0.00001f,
         .kd = 0.0f,
         .i_max = 13.0f,
@@ -82,7 +82,7 @@ DmMotorInitConfig_s yaw_motor_config={
 				.out_max =8,
 		},
 		.angle_pid_config={
-				.kp=15.0f,
+				.kp=35.0f,
 				.ki=0,
 				.kd=0,
 				.angle_max = 2*PI,
@@ -169,11 +169,11 @@ DjiMotorInitConfig_s shoot_motor2_config={
     };
 
 
-		
+//		
 //板间通信函数
-void data_pack()
-{
-    // 摇杆数据处理（保持不变）转化为无符号数据
+//void data_pack()
+//{
+//    // 摇杆数据处理（保持不变）转化为无符号数据
 //    uint16_t rx = (uint16_t)(rc->data.RChandle.rocker_rx + 660) & 0x7FF;
 //    uint16_t ry = (uint16_t)(rc->data.RChandle.rocker_ry + 660) & 0x7FF;
 //    uint16_t lx = (uint16_t)(rc->data.RChandle.rocker_lx + 660) & 0x7FF;
@@ -200,9 +200,13 @@ void data_pack()
 //    // 线性映射：-2π~2π → 0~255
 //    uint8_t yaw_byte = (uint8_t)((yaw + 2.0f * PI) * (255.0f / (4.0f * PI)));
 //    board_data_exchange->tx_buff[6] = yaw_byte;															
+//}
+
+void data_pack(){
+
+
+
 }
-
-
 
 		
 void Gimbal_Init(){//将云台各部进行注册

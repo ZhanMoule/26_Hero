@@ -20,6 +20,27 @@ void Gimbal_task(){
 				data_pack();
 				Can_Transmit(board_data_exchange);	
 			
+			if (rc->data.RChandle.switch_left==1 && rc->data.RChandle.switch_right==1){//如果拨杆s1和s2都拨到最上面，整车失能
+				//云台失能
+					Motor_Dm_Cmd(yaw_motor,DM_CMD_MOTOR_DISABLE);
+					Motor_Dm_Transmit(yaw_motor);
+				
+					Motor_Dm_Cmd(gimbal_pitch_motor,DM_CMD_MOTOR_DISABLE);
+					Motor_Dm_Transmit(gimbal_pitch_motor);
+				
+					Motor_Dm_Cmd(rammer_motor,DM_CMD_MOTOR_DISABLE);
+					Motor_Dm_Transmit(rammer_motor);
+				
+					Motor_Dji_Control(shoot_motor1, 0);	
+					Motor_Dji_Control(shoot_motor2, 0);
+				//底盘失能
+				
+				}
+				
+			
+				
+				
+			
 				if(rc->data.RChandle.switch_left==1){
 						pitch_angle+=rc->data.RChandle.rocker_ry*0.000001;	
 						if(pitch_angle>0.6)
