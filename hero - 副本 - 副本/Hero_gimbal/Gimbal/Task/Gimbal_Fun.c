@@ -10,6 +10,8 @@ DjiMotorInstance_s *shoot_motor2;
 
 CanInstance_s *board_data_exchange;
 
+Gimbal_data gimbal_data;
+
 CanInitConfig_s board_data_exchange_config ={
 	.can_number = 2,
     .tx_id = 0x300,
@@ -38,7 +40,7 @@ DmMotorInitConfig_s gimbal_pitch_motor_config = {
 		.topic_name = "pitch",
     .type = J4310,
 		.angle_pid_config={
-        .kp = 5.0f ,  
+        .kp = 32.55.0f ,  
         .ki =  0.0f, 
         .kd =  0.0f,
         .angle_max = 3.1415926f,
@@ -46,8 +48,8 @@ DmMotorInitConfig_s gimbal_pitch_motor_config = {
         .out_max = 3.0f,
         },
     .velocity_pid_config={
-        .kp =- 0.3f,
-        .ki = -0.00001f,
+        .kp =- 0.32f,
+        .ki = -0.00025f,
         .kd = 0.0f,
         .i_max = 13.0f,
         .out_max = 7.0f,
@@ -75,14 +77,14 @@ DmMotorInitConfig_s yaw_motor_config={
         .kd_int = 0.0f,
     },
 		.velocity_pid_config={
-				.kp=0.80f,
+				.kp=1.0f,
 				.ki=0.00025f,
 				.kd=0.0,
 				.i_max =4,
 				.out_max =8,
 		},
 		.angle_pid_config={
-				.kp=15.0f,
+				.kp=40.0f,
 				.ki=0,
 				.kd=0,
 				.angle_max = 2*PI,
@@ -173,33 +175,31 @@ DjiMotorInitConfig_s shoot_motor2_config={
 //板间通信函数
 void data_pack()
 {
-    // 摇杆数据处理（保持不变）转化为无符号数据
-//    uint16_t rx = (uint16_t)(rc->data.RChandle.rocker_rx + 660) & 0x7FF;
-//    uint16_t ry = (uint16_t)(rc->data.RChandle.rocker_ry + 660) & 0x7FF;
-//    uint16_t lx = (uint16_t)(rc->data.RChandle.rocker_lx + 660) & 0x7FF;
-//    uint16_t ly = (uint16_t)(rc->data.RChandle.rocker_ly + 660) & 0x7FF;
-
-//    // 拨杆开关处理（保持不变）
-//    uint8_t sw_left = (rc->data.RChandle.switch_left - 1) & 0x03;
-//    uint8_t sw_right = (rc->data.RChandle.switch_right - 1) & 0x03;
-
-//    // 打包数据（保持不变）压缩到6字节中
-//    board_data_exchange->tx_buff[0] = (uint8_t)(rx & 0xFF);
-//    board_data_exchange->tx_buff[1] = (uint8_t)(((rx >> 8) & 0x07) | ((ry & 0x1F) << 3));
-//    board_data_exchange->tx_buff[2] = (uint8_t)(((ry >> 5) & 0x3F) | ((lx & 0x03) << 6));
-//    board_data_exchange->tx_buff[3] = (uint8_t)((lx >> 2) & 0xFF);
-//    board_data_exchange->tx_buff[4] = (uint8_t)(((lx >> 10) & 0x01) | ((ly & 0x7F) << 1));
-//    board_data_exchange->tx_buff[5] = (uint8_t)(((ly >> 7) & 0x0F) | (sw_left << 4) | (sw_right << 6));
-//    
-//    // INS角度打包（使用字节6）
-//    float yaw = INS_angle[0];
-//    // 边界保护将yaw轴角度保持在360度内
-//    if (yaw < -2.0f * PI) yaw = -2.0f * PI;
-//    if (yaw > 2.0f * PI) yaw = 2.0f * PI;
-//    
-//    // 线性映射：-2π~2π → 0~255
-//    uint8_t yaw_byte = (uint8_t)((yaw + 2.0f * PI) * (255.0f / (4.0f * PI)));
-//    board_data_exchange->tx_buff[6] = yaw_byte;															
+    // 缩放数据到合适的位数
+    // yaw 范围 -2π 到 2π (-6.283 到 6.283)，乘以 500 得到 -3142 到 3142
+    int16_t yaw_scaled = (int16_t)(gimbal_data.yaw_position * 500);
+    int16_t vx_scaled = (int16_t)(gimbal_data.chassis_vx * 10);  // 8位: -100~100
+    int16_t vy_scaled = (int16_t)(gimbal_data.chassis_vy * 10);  // 8位: -100~100
+    
+    // 打包到4字节
+    uint32_t packed_data = 0;
+    packed_data |= ((uint32_t)(gimbal_data.chassis_mode & 0x03)) << 30;  // 2位: 位置30-31
+    packed_data |= ((uint32_t)(yaw_scaled & 0x0FFF)) << 18;              // 12位: 位置18-29
+    packed_data |= ((uint32_t)(vx_scaled & 0x00FF)) << 10;               // 8位: 位置10-17
+    packed_data |= ((uint32_t)(vy_scaled & 0x00FF)) << 2;                // 8位: 位置2-9
+    // 低2位保留为0
+    
+    // 直接写入发送缓冲区的前4个字节
+    board_data_exchange->tx_buff[0] = (packed_data >> 0) & 0xFF;
+    board_data_exchange->tx_buff[1] = (packed_data >> 8) & 0xFF;
+    board_data_exchange->tx_buff[2] = (packed_data >> 16) & 0xFF;
+    board_data_exchange->tx_buff[3] = (packed_data >> 24) & 0xFF;
+    
+    // 将剩余的4个字节清零
+    board_data_exchange->tx_buff[4] = 0;
+    board_data_exchange->tx_buff[5] = 0;
+    board_data_exchange->tx_buff[6] = 0;
+    board_data_exchange->tx_buff[7] = 0;					
 }
 
 

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Hero\Hero.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Hero\Hero.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Tue Sep 30 19:51:00 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Wed Oct  1 17:28:34 2025
 <BR><P>
 <H3>Maximum Stack Usage =        712 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -669,7 +669,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis_Motor_Init
 </UL>
 
-<P><STRONG><a name="[62]"></a>Chassis_task</STRONG> (Thumb, 298 bytes, Stack size 16 bytes, chassis_task.o(.text.Chassis_task))
+<P><STRONG><a name="[62]"></a>Chassis_task</STRONG> (Thumb, 286 bytes, Stack size 16 bytes, chassis_task.o(.text.Chassis_task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 712 + Unknown Stack Size
 <LI>Call Chain = Chassis_task &rArr; Chassis_Motor_Init &rArr; Chassis_Register &rArr; Motor_Dji_Register &rArr; Can_Register &rArr; Can_Init &rArr; Can_ID_Mask_Mode_Filter_Init &rArr; SEGGER_RTT_printf &rArr; SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; SEGGER_RTT_WriteNoLock &rArr; _WriteBlocking
 </UL>
@@ -2131,8 +2131,8 @@ Global Symbols
 <P><STRONG><a name="[6]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(.text.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[0]"></a>data_unpack</STRONG> (Thumb, 34 bytes, Stack size 4 bytes, chassis_fun.o(.text.data_unpack))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = data_unpack
+<P><STRONG><a name="[0]"></a>data_unpack</STRONG> (Thumb, 300 bytes, Stack size 16 bytes, chassis_fun.o(.text.data_unpack))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = data_unpack
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chassis_task
 </UL>

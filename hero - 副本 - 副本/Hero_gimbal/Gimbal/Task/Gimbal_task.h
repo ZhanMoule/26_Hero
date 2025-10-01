@@ -17,5 +17,7 @@ extern DjiMotorInstance_s *shoot_motor2;
 
 extern CanInstance_s *board_data_exchange;
 
+extern Gimbal_data gimbal_data;
+
 
 #endif 

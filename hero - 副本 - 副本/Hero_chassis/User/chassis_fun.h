@@ -11,7 +11,7 @@ typedef struct {
     float chassis_vx;
     float chassis_vy;
     int16_t chassis_mode;
-		int16_t yaw_position;
+		float yaw_position;
 } Gimbal_data;
 
 
