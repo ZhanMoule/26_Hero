@@ -6,17 +6,22 @@ float pitch_angle =0.0f;
 float yaw_angle =0.0f;
 float rammer_speed=0.0f;
 
-float chassis_vx=0.0f;
-float chassis_vy=0.0f;
-
-
 void Gimbal_task(){
 		
     Gimbal_Init();
 	
 		yaw_angle =INS_angle[0];
+	
+		gimbal_data.yaw_position=yaw_motor->message.position;
+		gimbal_data.chassis_vx=0.0f;
+		gimbal_data.chassis_vx=0.0f;
+		gimbal_data.chassis_mode=0;
 		
     while (1){
+			
+				gimbal_data.yaw_position=yaw_motor->message.position;
+				
+			
 				data_pack();
 				Can_Transmit(board_data_exchange);	
 			
@@ -32,7 +37,14 @@ void Gimbal_task(){
 						  	yaw_angle-=2*PI;
 						if(yaw_angle<-2*PI)
 								yaw_angle+=2*PI;
+						
+						gimbal_data.chassis_vx=rc->data.RChandle.rocker_lx/66.0;
+						gimbal_data.chassis_vy=rc->data.RChandle.rocker_ly/66.0;
+						gimbal_data.chassis_mode=0;
+						
 				}
+				else
+						gimbal_data.chassis_mode=0;
 				if(rc->data.RChandle.switch_left==3){
 						if(rc->data.Keyboard.key_bits.rocker_roll>1300){
 								rammer_speed=0.2;
