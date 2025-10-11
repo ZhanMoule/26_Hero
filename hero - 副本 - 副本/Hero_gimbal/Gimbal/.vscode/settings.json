@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "dev_remote_control.h": "c",
-        "bsp_uart.h": "c"
-    }
-}
